@@ -3017,7 +3017,12 @@ void GuiApp::draw_menu_bar() {
         if (ui::BeginMenu(msg::menu_about)) {
             ui::Text(spirula::i18n::msg::brand::product);
             ui::TextDisabled(spirula::i18n::msg::brand::about_line);
-            ui::TextDisabledRaw("github.com/harry7557558/spirulae-splat");
+            ImGui::Separator();
+            ui::TextDisabledRaw("EF Ventures Nexus distribution");
+            ui::TextDisabledRaw("github.com/rlongin/spirula-studio");
+            ImGui::Separator();
+            ui::TextDisabledRaw("Original open-source project");
+            ui::TextDisabledRaw("github.com/harry7557558/spirula-studio");
             ImGui::EndMenu();
         }
         ImGui::EndMenu();
