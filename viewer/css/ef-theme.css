@@ -38,7 +38,12 @@ body { height: 100dvh; font-size: 13px; }
 .btn.ef-primary { background: linear-gradient(135deg, #a089f5, #8271ea); color: #0b0d1b; border-color: transparent; font-weight: 650; }
 .btn.ef-primary:hover { background: #b19afc; }
 .ef-local-note { font-size: 10px; color: var(--text-dim); }
+#ef-open, .ef-actions .btn { width: auto; }
 #ef-open { flex-shrink: 0; }
+.ef-engine-error { max-width: 460px; padding: 18px; border: 1px solid #b19afc55; border-radius: 12px; background: #15182e; color: var(--text); font-size: 13px; line-height: 1.6; }
+.ef-engine-error strong { display: block; margin-bottom: 6px; color: var(--text-bright); }
+.ef-engine-error[hidden] { display: none; }
+.ef-actions[hidden] { display: none; }
 #panel { background: linear-gradient(180deg, #14172e, #101326); }
 .section { padding: 18px; }
 .section-title { color: var(--accent); letter-spacing: .16em; font-size: 9px; }

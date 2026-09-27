@@ -1,5 +1,6 @@
 const panel = document.getElementById('panel');
 const toggle = document.getElementById('panel-toggle');
+toggle.addEventListener('click', () => panel.classList.toggle('collapsed'));
 const buttons = ['ef-open', 'ef-browse', 'ef-demo'].map(id => document.getElementById(id));
 if (matchMedia('(max-width: 820px)').matches) panel.classList.add('collapsed');
 const syncPanel = () => toggle.setAttribute('aria-expanded', String(!panel.classList.contains('collapsed')));
@@ -26,19 +27,27 @@ demo.addEventListener('click', async () => {
 
 const status = document.getElementById('status-dot');
 let ready = false;
+let failed = false;
 function updateStatus() {
   if (status.classList.contains('ok') && !ready) {
     ready = true;
     buttons.forEach(button => { button.disabled = false; });
     if (parent !== window) parent.postMessage({ type: 'ef3d:ready' }, '*');
   } else if (!ready && status.classList.contains('err')) {
+    failed = true;
+    const notice = document.getElementById('ef-engine-error');
+    notice.hidden = false;
+    notice.querySelector('span').textContent = document.getElementById('status-text').textContent.includes('WebGL2')
+      ? 'This browser cannot start WebGL2. Try Chrome or Edge with graphics acceleration enabled, then reload this page.'
+      : 'The 3D engine could not start. Check your connection and reload this page.';
+    document.querySelector('.ef-actions').hidden = true;
     if (parent !== window) parent.postMessage({ type: 'ef3d:error' }, '*');
   }
 }
 new MutationObserver(updateStatus).observe(status, { attributes: true, attributeFilter: ['class'] });
 updateStatus();
 window.addEventListener('message', event => {
-  if (parent !== window && event.source === parent && event.data?.type === 'ef3d:probe' && ready) {
-    parent.postMessage({ type: 'ef3d:ready' }, event.origin);
+  if (parent !== window && event.source === parent && event.data?.type === 'ef3d:probe' && (ready || failed)) {
+    parent.postMessage({ type: ready ? 'ef3d:ready' : 'ef3d:error' }, event.origin);
   }
 });

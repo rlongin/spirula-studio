@@ -975,7 +975,6 @@ function wireControls() {
 
   bind('hist-param','change', () => computeHistogram());
   bind('btn-hist','click', () => computeHistogram());
-  bind('panel-toggle','click', () => $('panel').classList.toggle('collapsed'));
 
   updateNavLegend();
   $('nav-mode').addEventListener('change', updateNavLegend);
