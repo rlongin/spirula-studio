@@ -1,0 +1,80 @@
+/* EF Ventures viewer adaptation, 2026-09-27. GPL-3.0; upstream credits in about.html. */
+:root {
+  --bg: #0b0d1b;
+  --panel-bg: #12152b;
+  --panel-border: #ffffff16;
+  --accent: #b19afc;
+  --accent2: #8370ef;
+  --text: #d5d6e6;
+  --text-dim: #989bb4;
+  --text-bright: #f4f3fc;
+  --slider-track: #2a2b46;
+  --input-bg: #1b1e37;
+  --panel-width: 294px;
+  --header-h: 72px;
+  --font: Inter, 'Segoe UI', system-ui, sans-serif;
+  color-scheme: dark;
+}
+body { height: 100dvh; font-size: 13px; }
+#header { gap: 16px; padding: 0 24px; background: linear-gradient(110deg, #181a36, #101326); }
+#logo { display: flex; align-items: center; gap: 10px; font-size: 14px; letter-spacing: .1em; white-space: nowrap; }
+#logo img { width: 36px; height: 36px; margin: 0; }
+#logo small { display: block; margin-top: 5px; font-size: 8px; font-weight: 500; letter-spacing: .18em; color: var(--text-dim); }
+#status-text { font-size: 11px; max-width: 27%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#status-dot { flex-shrink: 0; width: 6px; height: 6px; }
+#status-dot.ok { background: #83dabb; box-shadow: 0 0 8px #83dabb55; }
+#fps { font-size: 10px; }
+#viewport { background: radial-gradient(ellipse at 45% 40%, #252046, #0b0d1b 70%); }
+#drop-hint { gap: 19px; padding: 24px; }
+.ef-eyebrow { font-size: 9px; letter-spacing: .3em; color: var(--accent); }
+#drop-hint .big { font-size: clamp(28px, 3.6vw, 52px); font-weight: 500; letter-spacing: -.045em; line-height: 1.12; }
+#drop-hint .big span { color: var(--accent); }
+.ef-intro { color: var(--text-dim); font-size: 13px; line-height: 1.5; }
+#drop-hint .sub { max-width: 430px; font-size: 11px; line-height: 1.8; }
+.ef-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; pointer-events: auto; }
+.btn { min-height: 38px; border-radius: 10px; padding: 9px 15px; border: 1px solid #ffffff20; background: #ffffff07; font-family: var(--font); font-size: 12px; transition: background .15s, border-color .15s; }
+.btn:hover { background: #b19afc15; border-color: #b19afc88; }
+.btn:disabled { opacity: .5; cursor: wait; }
+.btn.ef-primary { background: linear-gradient(135deg, #a089f5, #8271ea); color: #0b0d1b; border-color: transparent; font-weight: 650; }
+.btn.ef-primary:hover { background: #b19afc; }
+.ef-local-note { font-size: 10px; color: var(--text-dim); }
+#ef-open { flex-shrink: 0; }
+#panel { background: linear-gradient(180deg, #14172e, #101326); }
+.section { padding: 18px; }
+.section-title { color: var(--accent); letter-spacing: .16em; font-size: 9px; }
+.label { gap: 8px; }
+.label span:first-child { font-size: 12px; }
+select { border-radius: 8px; min-height: 34px; padding: 6px 9px; font-family: var(--font); }
+input[type=range] { height: 5px; }
+input[type=range]::-webkit-slider-thumb { box-shadow: none; }
+#panel-toggle { width: 38px; height: 38px; border-radius: 9px; border: 1px solid var(--panel-border); padding: 5px; }
+#ef-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 22px; flex: none; background: #0d1021; border-top: 1px solid var(--panel-border); font-size: 9px; letter-spacing: .12em; color: var(--text-dim); }
+#ef-footer nav { display: flex; gap: 18px; letter-spacing: 0; font-size: 11px; }
+a { color: var(--accent); text-underline-offset: 3px; }
+.ef-preview { margin-left: 12px; font-size: 8px; color: #aeb3c9; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+@media (max-width: 820px) {
+  #header { padding: 0 14px; gap: 10px; }
+  #panel { top: var(--header-h); bottom: 42px; max-width: calc(100vw - 36px); }
+  #panel-toggle { margin-left: 0; }
+  #fps { display: none; }
+  #status-text { margin-right: auto; max-width: 22%; }
+  #ef-open { margin-left: auto; }
+}
+@media (max-width: 520px) {
+  :root { --header-h: 66px; }
+  #header { gap: 8px; }
+  #logo { gap: 7px; font-size: 11px; }
+  #logo img { width: 28px; height: 28px; }
+  #logo small { font-size: 6px; }
+  #status-dot, #status-text { display: none; }
+  #ef-open { font-size: 11px; padding: 7px 10px; }
+  #drop-hint { gap: 15px; padding: 22px; }
+  #drop-hint .sub { font-size: 10px; }
+  .ef-intro { font-size: 12px; }
+  #ef-footer { padding: 12px; letter-spacing: .06em; }
+  #ef-footer nav { gap: 10px; font-size: 10px; }
+  .ef-preview { display: none; }
+  #nav-legend { max-width: 55%; font-size: 9px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

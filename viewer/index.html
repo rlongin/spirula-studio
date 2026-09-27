@@ -2,28 +2,35 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<title>Spirula Studio Viewer</title>
-<link rel="icon" href="https://harry7557558.github.io/spirula-studio/assets/icon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>EF 3D Studio · Powered by Spirula</title>
+<link rel="icon" href="ef-mark.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/ef-theme.css">
 </head>
 <body>
 <div id="header">
-  <div id="logo"><img src="https://harry7557558.github.io/spirula-studio/assets/icon_128.png" /> Spirula <b>Viewer</b></div>
+  <div id="logo"><img src="ef-mark.svg" alt="" /><span>EF <b>3D STUDIO</b><small>POWERED BY SPIRULA</small></span></div>
   <div id="status-dot"></div>
   <div id="status-text">Ready</div>
   <div id="fps"></div>
-  <button id="panel-toggle" title="Toggle panel">⚙️</button>
+  <button id="ef-open" class="btn" disabled>Open files</button>
+  <button id="panel-toggle" title="Toggle viewer settings" aria-label="Toggle viewer settings" aria-controls="panel" aria-expanded="true">☰</button>
 </div>
 
 <div id="main">
   <div id="viewport">
     <canvas id="glcanvas"></canvas>
     <div id="drop-hint">
-      <div class="big">Drop a model or dataset to view</div>
+      <div class="ef-eyebrow">NEXUS CREATIVE LAB</div>
+      <div class="big">A new perspective.<br><span>Your world in 3D.</span></div>
+      <div class="ef-intro">Explore a model, inspect the details, find your angle.</div>
+      <div class="ef-actions"><button id="ef-browse" class="btn ef-primary" disabled>Choose files</button><button id="ef-demo" class="btn" disabled>Explore demo</button></div>
       <div class="sub">3D Gaussian Splats (<b>.ply</b>) &nbsp;·&nbsp; Meshes (<b>.ply .obj .gltf .glb .stl</b>)<br>
       Datasets: <b>COLMAP</b> · <b>Nerfstudio</b> · <b>Metashape</b> — drop the folder or its files.<br>
-      Drag &amp; drop, or click to browse. For textured .gltf/.obj drop the model plus its <b>.bin/.mtl/image</b> files together.</div>
+      Drag &amp; drop a model. For textured .gltf/.obj drop the model plus its <b>.bin/.mtl/image</b> files together.</div>
+      <div class="ef-local-note">Files you choose stay in this browser. Nothing is uploaded.</div>
     </div>
     <div id="overlay"></div>
     <div id="cam-tooltip"></div>
@@ -202,7 +209,7 @@
       </div>
       <div class="row">
         <div class="label"><span>Background</span></div>
-        <input autocomplete="off" type="color" id="bg-color" value="#0a0b0e">
+        <input autocomplete="off" type="color" id="bg-color" value="#0b0d1b">
       </div>
     </div>
 
@@ -218,6 +225,8 @@
   </div>
 </div>
 
+<footer id="ef-footer"><span>EF VENTURES <span class="ef-preview">VIEWER PREVIEW</span></span><nav aria-label="Credits and source"><a href="about.html" target="_blank" rel="noopener noreferrer">About &amp; source</a><a href="https://github.com/harry7557558/spirula-studio" target="_blank" rel="noopener noreferrer">Spirula Studio</a></nav></footer>
+<script type="module" src="js/ef-brand.js"></script>
 <script type="module" src="js/main.js"></script>
 </body>
 </html>

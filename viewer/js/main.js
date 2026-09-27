@@ -804,12 +804,15 @@ function showTooltip(e, i) {
   const dlabels = cam.distType === 1 ? ['k1','k2','p1','p2']
                 : ['k1','k2','k3','k4','p1','p2','sx1','sy1'];
   const dstr = nz ? d.map((x,j)=> x ? `${dlabels[j]} ${x.toFixed(4)}` : null).filter(Boolean).join(', ') : 'none';
-  el.innerHTML =
-    `<b>${cam.name || 'camera ' + i}</b><br>` +
-    `${MODEL[cam.model] || 'model ' + cam.model} · ${cam.w}×${cam.h}<br>` +
-    `fx ${cam.fx.toFixed(1)}  fy ${cam.fy.toFixed(1)}<br>` +
-    `cx ${cam.cx.toFixed(1)}  cy ${cam.cy.toFixed(1)}<br>` +
-    `dist: ${dstr}`;
+  const title = document.createElement('b');
+  title.textContent = cam.name || 'camera ' + i;
+  el.replaceChildren(title);
+  for (const line of [
+    `${MODEL[cam.model] || 'model ' + cam.model} · ${cam.w}×${cam.h}`,
+    `fx ${cam.fx.toFixed(1)}  fy ${cam.fy.toFixed(1)}`,
+    `cx ${cam.cx.toFixed(1)}  cy ${cam.cy.toFixed(1)}`,
+    `dist: ${dstr}`,
+  ]) el.append(document.createElement('br'), document.createTextNode(line));
   const rect = canvas.getBoundingClientRect();
   el.style.left = (e.clientX - rect.left + 14) + 'px';
   el.style.top  = (e.clientY - rect.top + 14) + 'px';
